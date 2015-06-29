@@ -2,18 +2,24 @@ package com.example.rendongliu.testgoogle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.icemobile.framework.analytics.AnalyticsModule;
 import com.icemobile.framework.analytics.tracker.AnalyticsTracker;
@@ -26,14 +32,52 @@ public class MainActivity extends FragmentActivity {
     public static AnalyticsTracker tracker;
     private AnalyticsModule analyticsModule;
     private TextView text;
+    private String[] mPlanetTitles={"test1","test2","test3"};
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        com.example.rendongliu.testgoogle.Log.clear();
         analyticsModule = new GoogleAnalyticsV2Module(this, new TestModuleProvider());
         initAnalytics();
         setContentView(R.layout.activity_main);
+
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, mPlanetTitles));
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tracker.trackEvent("click menu item", "click item" + position, null, 0);
+            }
+        });
+
+       mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                tracker.trackEvent("open menu","open menu",null,0);
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         text=(TextView)findViewById(R.id.text);
         Button click1=(Button)findViewById(R.id.click1);
@@ -122,6 +166,39 @@ public class MainActivity extends FragmentActivity {
         tracker.trackPage("Main page Pause");
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tracker.trackEvent("Quit", "I am leaving", null, 0);
+        com.example.rendongliu.testgoogle.Log.store();
+
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private class ZoomOutPageTransformer implements ViewPager.PageTransformer {
         private static final float MIN_SCALE = 0.95f;

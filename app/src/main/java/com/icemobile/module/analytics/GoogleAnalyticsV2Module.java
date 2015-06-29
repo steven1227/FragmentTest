@@ -1,7 +1,8 @@
 package com.icemobile.module.analytics;
 
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
+import com.example.rendongliu.testgoogle.Log;
 
 import com.icemobile.framework.analytics.AnalyticsModule;
 import com.icemobile.framework.analytics.tracker.AnalyticsTracker;
