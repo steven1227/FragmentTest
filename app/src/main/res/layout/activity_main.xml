@@ -1,21 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myroot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-
-    tools:context=".MainActivity">
-
+    android:orientation="vertical">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="GotoPage2"
+        android:id="@+id/click1"
         android:layout_gravity="center"
-        android:text="Goto2"
-        android:id="@+id/goto2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        android:gravity="center_vertical|center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove the slides"
+        android:id="@+id/click2"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slide view below"
+        android:id="@+id/text"
+        android:gravity="center"
+        android:textColor="#ffff0028"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="100dp" />
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,4 +40,8 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         />
+
+
+
+
 </LinearLayout>

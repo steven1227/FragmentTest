@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.icemobile.brightstamps.superbrugsen.preview.Active2">
+
+
+
+
+
+    <!--<fragment-->
+        <!--android:name="com.example.rendongliu.testgoogle.ArticalFragment"-->
+        <!--android:id="@+id/article_fragment3"-->
+        <!--android:layout_weight="2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:layout="@layout/article_view" />-->
+
+
+    <fragment
+        android:name="com.example.rendongliu.testgoogle.HeadingFragment"
+        android:id="@+id/headline_fragment"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/heading_view" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <fragment
+            android:name="com.example.rendongliu.testgoogle.ArticalFragment"
+            android:id="@+id/article_fragment3"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:layout="@layout/article_view" />
+
+        <FrameLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#f23816"
+                android:text="android"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

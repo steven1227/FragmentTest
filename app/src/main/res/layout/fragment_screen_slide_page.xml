@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView style="?android:textAppearanceMedium"
-        android:padding="16dp"
-        android:lineSpacingMultiplier="1.2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="welcome" />
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/image"
+        android:src="@drawable/ice"
+
+        android:layout_width="300dp"
+        android:layout_height="100dp" />
 </ScrollView>

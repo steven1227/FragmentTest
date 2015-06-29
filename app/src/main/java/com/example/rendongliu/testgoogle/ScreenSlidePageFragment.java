@@ -1,4 +1,4 @@
-package com.example.steven.testanalytics;
+package com.example.rendongliu.testgoogle;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
