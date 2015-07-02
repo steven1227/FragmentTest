@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_log_number">10</integer>
+    <string name="log_file_name">Log.txt</string>
+    <integer name="sava_interval">30000</integer>
+</resources>

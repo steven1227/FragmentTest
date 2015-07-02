@@ -5,4 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="CustomTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarTabTextStyle">@style/myTabText</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="myTabText" parent="android:Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">#991123</item>
+    </style>
 </resources>

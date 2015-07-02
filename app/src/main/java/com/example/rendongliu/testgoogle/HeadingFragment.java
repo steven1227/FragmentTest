@@ -1,6 +1,7 @@
 package com.example.rendongliu.testgoogle;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.icemobile.framework.analytics.tracker.AnalyticsTracker;
 
@@ -48,7 +50,18 @@ public class HeadingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listener.onArticleSelected(position);
-                tracker.trackEvent("View different stamps", "see stamp"+position, null, 0);
+                ((TextView)view).setTextColor(Color.RED);
+
+                int i =parent.getChildCount();
+                for (int j=0;j<i;j++) {
+                    if(j!=position){
+                        ((TextView)parent.getChildAt(j)).setTextColor(Color.WHITE);
+                    }
+                }
+
+                Log.e("Google", (String) heading.getItemAtPosition(position));
+
+                tracker.trackEvent("View different stamps", "see stamp" + position, null, 0);
             }
         });
         return temp;

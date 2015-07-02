@@ -41,8 +41,8 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.rendongliu.testgoogle.Log.clear();
-        analyticsModule = new GoogleAnalyticsV2Module(this, new TestModuleProvider());
+//        com.library.rendong.log.Log.clear();
+        analyticsModule = new GoogleAnalyticsV2Module(this.getApplicationContext(), new TestModuleProvider());
         initAnalytics();
         setContentView(R.layout.activity_main);
 
@@ -124,6 +124,9 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+        View view=getWindow().getDecorView();
+        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_FULLSCREEN);
+
     }
 
     private void initAnalytics() {
@@ -171,7 +174,7 @@ public class MainActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         tracker.trackEvent("Quit", "I am leaving", null, 0);
-        com.example.rendongliu.testgoogle.Log.store();
+//        com.library.rendong.log.Log.store();
 
     }
 
